@@ -20,8 +20,8 @@
 
 # Print the output of "mysqladmin status" to the mysql file
 print_mysql() {
-  log INFO "Starting 'mysql status' report"
   local LOGFILE="$1"
+  log INFO "Starting 'mysql status' report - ${LOGFILE##*/}"
   local PLESK_FILE="/etc/psa/.psa.shadow"
   if [[ -r "${PLESK_FILE}" ]]; then
     echo "MySQL status" >> "${LOGFILE}"
@@ -36,8 +36,8 @@ print_mysql() {
 
 # Print the non-truncated innodb status to the mysql file
 print_mysql_innodb_status() {
-  log INFO "Starting 'mysql innodb' report"
   local LOGFILE="$1"
+  log INFO "Starting 'mysql innodb' report - ${LOGFILE##*/}"
   # First, we establish which tmpdir and pid_file are in use, strip any
   # trailing slash and populate the file with current information.
   # We throw away the output of the "show engine innodb status" command as
@@ -72,8 +72,8 @@ print_mysql_innodb_status() {
 
 # Print the output of "mysqladmin processlist" to the mysql file
 print_mysql_procs() {
-  log INFO "Starting 'mysql processlist' report"
   local LOGFILE="$1"
+  log INFO "Starting 'mysql processlist' report - ${LOGFILE##*/}"
   local PLESK_FILE="/etc/psa/.psa.shadow"
   if [[ -r "${PLESK_FILE}" ]]; then
     echo "MySQL processes" >> "${LOGFILE}"
