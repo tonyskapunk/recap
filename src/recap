@@ -330,8 +330,7 @@ run_resources_report() {
   fi
 
   # check to see if webserver fullstatus should be run
-  type -p 'links' > /dev/null
-  if [[ $? -eq 0 && "${USEFULLSTATUS,,}" == "yes" ]]; then
+  if type -p 'links' &>/dev/null && [[ "${USEFULLSTATUS,,}" == "yes" ]]; then
     print_blankline "${ITEM_FILE}"
     print_http_fullstatus "${ITEM_FILE}"
   fi
