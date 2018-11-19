@@ -24,7 +24,7 @@ print_docker_top() {
   log INFO "Starting '${plugin_name}' report - ${LOGFILE##*/}"
   ##
   DOCKER=$( type -p docker )
-  if [[ -z ${DOCKER} ]]; then
+  if [[ -z "${DOCKER}" ]]; then
     echo "Docker is not installed" >> "${LOGFILE}"
     log INFO "Ended '${plugin_name}' report"
     return

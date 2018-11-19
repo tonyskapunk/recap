@@ -156,7 +156,7 @@ pack_old_logs() {
   fi
   # Backing up only items found in the YESTERDAYDATE
   local -a items=( $( get_report_names_of_day "${YESTERDAYDATE}" ) )
-  if [[ -z ${items} ]]; then
+  if [[ -z "${items}" ]]; then
     log ERROR "Unable to archive unexisting reports."
     return 0
   fi

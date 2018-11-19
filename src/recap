@@ -442,7 +442,7 @@ get_last_report_names() {
                    grep -oP '\d{8}-\d{6}' |
                    sort -ur |
                    head -1 )
-  if [[ -z ${last_suffix} ]]; then
+  if [[ -z "${last_suffix}" ]]; then
     log ERROR "No previous run has been found, unable to find report names."
   else
     log INFO "Last run was on: ${last_suffix}"
@@ -462,7 +462,7 @@ get_last_report_names() {
 create_backup() {
   log INFO "Starting backup of reports"
   local -a log_files=( $( get_last_report_names ) )
-  if [[ -z ${log_files} ]]; then
+  if [[ -z "${log_files}" ]]; then
     log ERROR "Unable to backup unexisting reports."
   else
     for log_file in ${log_files[@]}; do
