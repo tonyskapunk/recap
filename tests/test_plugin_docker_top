@@ -1,0 +1,4 @@
+#!/bin/bash
+# Tests for plugin docker
+
+echo "Tests for ${0/*\/}"

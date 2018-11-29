@@ -1,4 +1,5 @@
 #!/bin/bash
+# Test recap core functionality
 
 # Get full path to recap
 recap_path=$(type -p recap)
