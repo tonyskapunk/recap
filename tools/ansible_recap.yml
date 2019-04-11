@@ -13,7 +13,7 @@
       - git
       - make
     systemd_unit_dir: "{{ destdir }}/usr/lib/systemd/system"
-    enable_plugins: "no"
+    enable_plugins: false
     plugin_list:
       - all
   tasks:
@@ -94,7 +94,7 @@
           state: link
         with_items: "{{ plugin_list }}"
 
-      when: enable_plugins
+      when: enable_plugins|bool
 
     - name: Enable systemd timers
       systemd:
@@ -105,9 +105,6 @@
       with_items: "{{ timers }}"
       when: ansible_service_mgr == 'systemd'
 
-    - name: Run manually recap
-      shell: recap
-
     - name: Get recap version
       shell: recap --version
       register: recap_version
@@ -115,6 +112,14 @@
     - name: Print recap version
       debug:
         var: recap_version.stdout_lines[0]
+
+    - name: Run manually recap
+      shell: recap
+
+    - name: Wait for recap completion
+      wait_for:
+        path: /var/lock/recap.lock
+        state: absent
     when: uninstall is undefined
 
   - name: Uninstall
