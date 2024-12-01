@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: "centos_8"
-            registry: quay.io/centos/centos:stream8
+          - name: "centos_10"
+            registry: quay.io/centos/centos:stream10
           - name: "centos_9"
             registry: quay.io/centos/centos:stream9
           - name: "ubuntu_22.04"
